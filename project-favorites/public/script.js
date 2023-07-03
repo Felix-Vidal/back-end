@@ -27,7 +27,7 @@ function addElement({ name, url }) {
 
   link.appendChild(linkText);
   link.href = url;
-  link.target = '_blank';
+  link.target = '_blank'; //vai para uma outra aba
 
   const removeButton = document.createElement('button');
   removeButton.classList.add("remover")
