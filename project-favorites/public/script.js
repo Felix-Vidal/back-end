@@ -19,26 +19,26 @@ load()
 */
 
 function addElement({ name, url }) {
-  const listItem = document.createElement('li');
-  const link = document.createElement('a');
-  const linkText = document.createTextNode(name);
+  const listItem = document.createElement('li');//cria uma lista não ordenada
+  const link = document.createElement('a'); //cria um link
+  const linkText = document.createTextNode(name); //coloca  texto dentro da tag li
 
-  link.classList.add('format')
+  link.classList.add('format') //classe para formatar
 
-  link.appendChild(linkText);
-  link.href = url;
+  link.appendChild(linkText); //adicionar o li como filho do link
+  link.href = url; //adicionar uma url dentro do link
   link.target = '_blank'; //vai para uma outra aba
 
-  const removeButton = document.createElement('button');
-  removeButton.classList.add("remover")
-  removeButton.innerHTML = 'Remover';
+  const removeButton = document.createElement('button'); //criação de um botão remover
+  removeButton.classList.add("remover") //formatação do botão
+  removeButton.innerHTML = 'Remover'; //formatação do botão
 
-  removeButton.addEventListener('click', () => {
+  removeButton.addEventListener('click', () => { //evento para pode excluir 
       removeElement(listItem);
   });
 
-  listItem.appendChild(link);
-  listItem.appendChild(removeButton);
+  listItem.appendChild(link); //adiciona o link como filho da li
+  listItem.appendChild(removeButton); //adiciona o botão remover como filho da li 
 
   document.getElementById('links').appendChild(listItem);
 }
