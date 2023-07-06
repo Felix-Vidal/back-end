@@ -17,6 +17,11 @@ function writeFile(cb){
 
 http.createServer((req,res) => {
     const {name, url, del} = URL.parse(req.url, true).query //declarar os elementos da requisição
+
+    res.writeHead(200, {
+        'Access-Control-Allow-Origin':'*'
+    })
+
     if(!name || !url) return res.end(JSON.stringify(data)); //se não tiver nenhum elemento ele faz a requisição dos dados 
 
     

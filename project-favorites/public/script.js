@@ -2,21 +2,15 @@ const ul = document.querySelector('ul')
 const input = document.querySelector('input')
 const form = document.querySelector('form')
 
-/*
-
-// Não se preocupem com esse pedaço de código comentado! Vamos descomentá-lo quando tivermos acabado de construir a API.
-
 // Função que carrega o conteúdo da API.
-async function load() {
+async function load(nome="", url="", del=false) {
     // fetch está como await para evitar que entre num esquema de promisse e só devolva o conteúdo após a iteração qua acontece em seguida.
-    const res = await fetch('http://localhost:3000/')
+    const res = await fetch('http://localhost:3000/?nome='+nome+'&url='+url+'&del='+del)
         .then(data => data.json())
     // Iterando no vetor com o conteúdo (JSON) que está vindo da API e adicionando-os no frontend.
     res.urls.map(({name, url}) => addElement({name, url}))
 }
-
 load()
-*/
 
 function addElement({ name, url }) {
   const listItem = document.createElement('li');//cria uma lista não ordenada
@@ -34,17 +28,20 @@ function addElement({ name, url }) {
   removeButton.innerHTML = 'Remover'; //formatação do botão
 
   removeButton.addEventListener('click', () => { //evento para pode excluir 
-      removeElement(listItem);
+        removeElement(listItem,name,url);
   });
 
   listItem.appendChild(link); //adiciona o link como filho da li
   listItem.appendChild(removeButton); //adiciona o botão remover como filho da li 
 
+  load(nome,url)
+
   document.getElementById('links').appendChild(listItem);
 }
 
-function removeElement(element) {
-  element.parentNode.removeChild(element);
+function removeElement(element,nome,url) {
+    load(nome,url, true)
+    element.parentNode.removeChild(element);
 }
 
 
