@@ -3,8 +3,8 @@ const input = document.querySelector('input')
 const form = document.querySelector('form')
 
 // Função que carrega o conteúdo da API.
-async function load(nome = '', url = '', del = false) {
-    const res = await fetch(`http://localhost:3000/?name=${nome}&url=${url}&del=${del}`)
+async function load(name = '', url = '', del = false) {
+    const res = await fetch(`http://localhost:3000/?name=${name}&url=${url}&del=${del}`)
       .then(data => data.json());
   
     ul.innerHTML = '';
@@ -12,7 +12,16 @@ async function load(nome = '', url = '', del = false) {
     res.urls.forEach(({ name, url }) => addElement({ name, url }));
   }
 
+
+
+async function save({name,url}){
+  const res = await fetch(`http://localhost:3000/?name=${name}&url=${url}`)
+    .then(data => data.json());
+}
+
 load()
+
+
 
 function addElement({ name, url }) {
   const listItem = document.createElement('li');//cria uma lista não ordenada
@@ -37,7 +46,6 @@ function addElement({ name, url }) {
   listItem.appendChild(removeButton); //adiciona o botão remover como filho da li 
 
   document.getElementById('links').appendChild(listItem);
-  load(nome, url);
 }
 
 function removeElement(element,name,url) {
@@ -62,8 +70,9 @@ form.addEventListener('submit', (event) => {
 
     if (!/^http/.test(url))
         return alert('Digite a url da maneira correta.')
-
+    save({name,url})
     addElement({ name, url });
+
 
     input.value = ''
 

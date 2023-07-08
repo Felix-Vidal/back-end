@@ -22,8 +22,6 @@ http.createServer((req,res) => {
         'Access-Control-Allow-Origin':'*'
     })
 
-    if(!name || !url) return res.end(JSON.stringify(data)); //se não tiver nenhum elemento ele faz a requisição dos dados 
-
     if (!name || !url) return res.end(JSON.stringify(data)); // Se 'name' ou 'url' estiverem ausentes, retornar os dados atuais em formato JSON
 
     if (del) {
