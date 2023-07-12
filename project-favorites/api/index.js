@@ -24,9 +24,12 @@ http.createServer((req, res) => {
   });
 
   if (!name || !url) {
-    if (del) {
-      data.urls = data.urls.filter((item) => item.url !== url);
-      return writeFile((message) => res.end(JSON.stringify({ message })));
+    if (del === 'true') {
+      const updatedData = data.urls.filter((item) => item.name !== name || item.url !== url);
+      if (updatedData.length < data.urls.length) {
+        data.urls = updatedData;
+        return writeFile((message) => res.end(JSON.stringify({ message })));
+      }
     }
     return res.end(JSON.stringify(data));
   }
@@ -34,8 +37,18 @@ http.createServer((req, res) => {
   if (updateName && updateURL) {
     const itemIndex = data.urls.findIndex((item) => item.name === name && item.url === url);
     if (itemIndex !== -1) {
-      data.urls[itemIndex].name = updateName;
-      data.urls[itemIndex].url = updateURL;
+      if (updateName && updateURL) {
+        data.urls[itemIndex].name = updateName;
+        data.urls[itemIndex].url = updateURL;
+        return writeFile((message) => res.end(JSON.stringify({ message })));
+      }
+    }
+  }
+
+  if (del === 'true') {
+    const itemIndex = data.urls.findIndex((item) => item.name === name && item.url === url);
+    if (itemIndex !== -1) {
+      data.urls.splice(itemIndex, 1);
       return writeFile((message) => res.end(JSON.stringify({ message })));
     }
   }
@@ -46,5 +59,7 @@ http.createServer((req, res) => {
 
 
 
+
 // /?name=John&url=http://example.com
 // /?name=John&url=http://example.com&del=true
+// /?name=John&url=http://example.com&updateName=NewName&updateURL=http://newurl.com
