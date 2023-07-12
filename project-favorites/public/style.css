@@ -1,9 +1,17 @@
 body {
-  background: linear-gradient(#b3d9ff, #ffffff);
+  background: linear-gradient(#bddcfb, #ffffff); 
   color: #000000;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+}
+
+header {
+  margin-bottom: 40px; /* Adicionando margem inferior */
+  background-color: rgba(70,130,180);
+  padding: 15px;
+  text-align: center;
+  color: #ffffff;
 }
 
 
@@ -12,7 +20,7 @@ h1 {
   text-align: center;
   margin-top: 15px;
   font-size: 30px;
-  color: #000000;
+  color: #ffffff;
 }
 
 form {
@@ -25,10 +33,15 @@ input[type="text"] {
   width: 30em;
   border: none;
   border-radius: 20px;
-  background-color: rgb(60, 78, 197);
+  background-color: rgb(70,130,180);
   font-size: 16px;
-  color: #fdf1f1;
+  color: #ffffff;
 }
+
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Define a cor mais clara para o placeholder */
+}
+
 
 ul {
   list-style: none;
@@ -45,8 +58,8 @@ ul p {
   color: white;
   padding: 12px;
   text-align: center;
-  background-color: rgb(48, 66, 181);
-  border: #000000 solid;
+  background-color: rgb(70,130,180);
+  border: #fefefe solid;
 }
 
 input#salvar {
@@ -58,7 +71,7 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(60, 78, 197);
+  background-color: rgb(70,130,180);
   color: white;
   border-radius: 12px;
   padding: 10px;
@@ -73,10 +86,23 @@ a.format {
 
 button.remover {
   background-color: rgb(235, 87, 87);
-  color: white;
+  color: #ffffff;
   border: none;
   padding: 5px 10px;
   border-radius: 8px;
+}
+
+
+button.atualizar {
+  background-color: rgb(16, 190, 48);
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.button-container {
+  margin-left: 15px;
 }
 
 header {
@@ -86,9 +112,9 @@ header {
 footer {
   position: fixed;
   bottom: 0;
-  background-color: rgb(60, 78, 197);
+  background-color: rgb(70,130,180);
   padding: 20px;
   text-align: center;
   width: 100%;
-  color: white;
+  color: rgb(253, 253, 253);
 }

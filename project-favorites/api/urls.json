@@ -1,24 +1,24 @@
 {
   "urls": [
     {
-      "name": "l",
+      "name": "chat",
       "url": "https://chat.openai.com/"
     },
     {
-      "name": "l",
-      "url": "https://chat.openai.com/"
+      "name": "git",
+      "url": "https://github.com/"
     },
     {
-      "name": "l",
-      "url": "https://chat.openai.com/"
+      "name": "tabela html",
+      "url": "https://www.homehost.com.br/"
     },
     {
-      "name": "l",
-      "url": "https://chat.openai.com/"
+      "name": "google",
+      "url": "https://www.google.com/"
     },
     {
-      "name": "l",
-      "url": "https://chat.openai.com/"
+      "name": "whatsapp",
+      "url": "https://web.whatsapp.com/"
     }
   ]
 }

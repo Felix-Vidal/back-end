@@ -72,6 +72,9 @@ function addElement({ name, url }) {
   link.href = url;
   link.target = '_blank';
 
+  const buttonContainer = document.createElement('div');
+  buttonContainer.classList.add('button-container');
+
   const removeButton = document.createElement('button');
   removeButton.classList.add('remover');
   removeButton.innerHTML = 'Remover';
@@ -88,11 +91,14 @@ function addElement({ name, url }) {
     updateElement(listItem, name, url);
   });
 
+  buttonContainer.appendChild(removeButton);
+  buttonContainer.appendChild(updateButton);
+
   listItem.appendChild(link);
-  listItem.appendChild(removeButton);
-  listItem.appendChild(updateButton);
+  listItem.appendChild(buttonContainer);
 
   ul.appendChild(listItem);
 }
+
 
 load();
