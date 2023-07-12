@@ -1,91 +1,94 @@
 body {
-    background-color: #ffffff;
-    color: #000000;
-    margin: 0;
-    padding: 0;
+  background: linear-gradient(#b3d9ff, #ffffff);
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
 
-}
-  
+
+
 h1 {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 30px;
-    color: #000000;
-  }
-  
+  text-align: center;
+  margin-top: 15px;
+  font-size: 30px;
+  color: #000000;
+}
+
 form {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-  
+
 input[type="text"] {
-    padding: 10px;
-    width: 30em;
-    border: none;
-    border-radius: 20px;
-    background-color: rgb(60, 78, 197);
-    font-size: 16px;
-    color: #fdf1f1;
+  padding: 10px;
+  width: 30em;
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(60, 78, 197);
+  font-size: 16px;
+  color: #fdf1f1;
 }
-  
+
 ul {
-    list-style: none;
-    margin: 20px auto;
-    padding: 1em;
-    max-width: 32em;
-    background-color: rgba(187, 187, 202, 0.433);
+  list-style: none;
+  margin: 20px auto;
+  padding: 1em;
+  max-width: 32em;
+  background-color: rgba(187, 187, 202, 0.433);
+  border-radius: 20px;
+  margin-bottom: 80px; /* Adicionando margem inferior */
 }
 
 ul p {
-    font-size: 20px;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    background-color: rgb(48, 66, 181);
-    border: #000000 solid;
+  font-size: 20px;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  background-color: rgb(48, 66, 181);
+  border: #000000 solid;
 }
 
-
-input#salvar{
-    background-color: rgb(7, 176, 7);
-    border-radius: 5px;
-
+input#salvar {
+  background-color: rgb(7, 176, 7);
+  border-radius: 5px;
 }
-  
+
 li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(60, 78, 197);
-    color: white;
-    border-radius: 12px;
-    padding: 10px;
-    margin: 5px 0;
-  }
-  
-  a.format {
-    color: #fdf1f1;
-    font-size: 1.5em;
-    text-decoration: none;
-  }
-  
-  button.remover {
-    background-color: rgb(235, 87, 87);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 8px;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(60, 78, 197);
+  color: white;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 5px 0;
+}
 
-  footer {
-    position: fixed;
-    bottom: 0;
-    background-color: rgb(60, 78, 197);
-    padding: 20px;
-    text-align: center;
-    width: 100%;
-    color: white;
-  }
+a.format {
+  color: #fdf1f1;
+  font-size: 1.5em;
+  text-decoration: none;
+}
 
+button.remover {
+  background-color: rgb(235, 87, 87);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
 
+header {
+  margin-bottom: 40px; /* Adicionando margem inferior */
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color: rgb(60, 78, 197);
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  color: white;
+}

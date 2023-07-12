@@ -1,12 +1,24 @@
 {
   "urls": [
     {
-      "name": "chat",
-      "url": "https://web.whatsapp.com/"
+      "name": "l",
+      "url": "https://chat.openai.com/"
     },
     {
-      "name": "chat",
-      "url": "https://github.com/"
+      "name": "l",
+      "url": "https://chat.openai.com/"
+    },
+    {
+      "name": "l",
+      "url": "https://chat.openai.com/"
+    },
+    {
+      "name": "l",
+      "url": "https://chat.openai.com/"
+    },
+    {
+      "name": "l",
+      "url": "https://chat.openai.com/"
     }
   ]
 }
