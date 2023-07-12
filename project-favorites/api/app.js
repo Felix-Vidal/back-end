@@ -1,27 +1,25 @@
-const express = require("express");
-const operacoes = require("./conexao");
+const express = require("express")
+const router = require("./routes/myRouter")
+const database = require("./service/database.service")
 const cors = require("cors")
 
-
-const servidor = express();
-
-servidor.use(cors);
+const app = express()
 
 
-servidor.get("/", async (req, res)=>{
-    const data = await operacoes.getOne();
-    res.send(data)
+app.use(cors())
+
+database.connectToDatabase().then(()=>{
+    app.use(router)
+
+    app.listen(3000, ()=>{
+        console.log("Rodando")
+    })
+}).catch((error)=>{
+    console.error("Erro ao conectar com o banco", error);
+    process.exit()
 })
 
-servidor.post("/", async(req, res)=>{
-    const objDoCorpo = req.body;
 
-   const data = await operacoes.insert(JSON.parse(objDoCorpo));
 
-   res.send(data)
-})
 
-const port = 5000
-servidor.listen(3000, ()=>{
-    console.log("Running server in " + port );
-});
+
