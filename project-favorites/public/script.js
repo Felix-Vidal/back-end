@@ -1,79 +1,98 @@
-const ul = document.querySelector('ul')
-const input = document.querySelector('input')
-const form = document.querySelector('form')
+const ul = document.querySelector('ul');
+const input = document.querySelector('input');
+const form = document.querySelector('form');
 
-// Função que carrega o conteúdo da API.
-async function load(name = '', url = '', del = false) {
-    const res = await fetch(`http://localhost:3000/?name=${name}&url=${url}&del=${del}`)
-      .then(data => data.json());
-  
-    ul.innerHTML = '';
-  
-    res.urls.forEach(({ name, url }) => addElement({ name, url }));
-  }
+async function load() {
+  const res = await fetch('http://localhost:3000');
+  const data = await res.json();
 
+  ul.innerHTML = '';
 
-
-async function save({name,url}){
-  const res = await fetch(`http://localhost:3000/?name=${name}&url=${url}`)
-    .then(data => data.json());
+  data.urls.forEach(({ name, url }) => addElement({ name, url }));
 }
 
-load()
+async function save({ name, url }) {
+  const res = await fetch(`http://localhost:3000/?name=${name}&url=${url}`);
+  const data = await res.json();
+}
 
+async function removeElement(element, name, url) {
+  const res = await fetch(`http://localhost:3000/?name=${name}&url=${url}&del=true`);
+  const data = await res.json();
 
+  if (data.message === 'Operação realizada com sucesso!') {
+    element.parentNode.removeChild(element);
+  } else {
+    alert('Ocorreu um erro ao excluir o item.');
+  }
+}
+
+async function updateElement(element, name, url) {
+  const newUrl = prompt('Digite a nova URL:');
+
+  if (newUrl) {
+    const res = await fetch(`http://localhost:3000/?name=${name}&url=${url}&updateName=${name}&updateURL=${newUrl}`);
+    const data = await res.json();
+
+    if (data.message === 'Operação realizada com sucesso!') {
+      const link = element.querySelector('a');
+      link.href = newUrl;
+    } else {
+      alert('Ocorreu um erro ao atualizar o item.');
+    }
+  }
+}
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  let { value } = input;
+
+  if (!value) return alert('Preencha o campo!');
+
+  const [name, url] = value.split(',');
+
+  if (!url) return alert('O texto não está formatado corretamente.');
+
+  if (!/^http/.test(url)) return alert('Digite a URL corretamente.');
+
+  await save({ name, url });
+  addElement({ name, url });
+
+  input.value = '';
+});
 
 function addElement({ name, url }) {
-  const listItem = document.createElement('li');//cria uma lista não ordenada
-  const link = document.createElement('a'); //cria um link
-  const linkText = document.createTextNode(name); //coloca  texto dentro da tag li
+  const listItem = document.createElement('li');
+  const link = document.createElement('a');
+  const linkText = document.createTextNode(name);
 
-  link.classList.add('format') //classe para formatar
+  link.classList.add('format');
+  link.appendChild(linkText);
+  link.href = url;
+  link.target = '_blank';
 
-  link.appendChild(linkText); //adicionar o li como filho do link
-  link.href = url; //adicionar uma url dentro do link
-  link.target = '_blank'; //vai para uma outra aba
+  const removeButton = document.createElement('button');
+  removeButton.classList.add('remover');
+  removeButton.innerHTML = 'Remover';
 
-  const removeButton = document.createElement('button'); //criação de um botão remover
-  removeButton.classList.add("remover") //formatação do botão
-  removeButton.innerHTML = 'Remover'; //formatação do botão
-
-  removeButton.addEventListener('click', () => { //evento para pode excluir 
-        removeElement(listItem,name,url);
+  removeButton.addEventListener('click', () => {
+    removeElement(listItem, name, url);
   });
 
-  listItem.appendChild(link); //adiciona o link como filho da li
-  listItem.appendChild(removeButton); //adiciona o botão remover como filho da li 
+  const updateButton = document.createElement('button');
+  updateButton.classList.add('atualizar');
+  updateButton.innerHTML = 'Atualizar';
 
-  document.getElementById('links').appendChild(listItem);
+  updateButton.addEventListener('click', () => {
+    updateElement(listItem, name, url);
+  });
+
+  listItem.appendChild(link);
+  listItem.appendChild(removeButton);
+  listItem.appendChild(updateButton);
+
+  ul.appendChild(listItem);
 }
 
-function removeElement(element,name,url) {
-    element.parentNode.removeChild(element);
-   load(name,url,true)
-}
-
-
-form.addEventListener('submit', (event) => {
-    
-    event.preventDefault();
-
-    let { value } = input
-
-    if (!value)
-        return alert('Preencha o campo!')
-
-    const [name, url] = value.split(',')
-
-    if (!url)
-        return alert('O texto não está formatado da maneira correta.')
-
-    if (!/^http/.test(url))
-        return alert('Digite a url da maneira correta.')
-    save({name,url})
-    addElement({ name, url });
-
-
-    input.value = ''
-
-})
+load();
