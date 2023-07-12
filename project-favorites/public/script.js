@@ -37,11 +37,18 @@ async function updateElement(element, name, url) {
     if (data.message === 'Operação realizada com sucesso!') {
       const link = element.querySelector('a');
       link.href = newUrl;
+
+      const removeButton = element.querySelector('.remover');
+      removeButton.addEventListener('click', () => {
+        removeElement(element, name, newUrl);
+      });
     } else {
       alert('Ocorreu um erro ao atualizar o item.');
     }
   }
 }
+
+
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
