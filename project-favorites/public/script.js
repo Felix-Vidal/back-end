@@ -39,9 +39,14 @@ async function updateElement(element, name, url) {
       link.href = newUrl;
 
       const removeButton = element.querySelector('.remover');
-      removeButton.addEventListener('click', () => {
+      const newRemoveButton = removeButton.cloneNode(true);
+      newRemoveButton.addEventListener('click', () => {
         removeElement(element, name, newUrl);
       });
+
+      const buttonContainer = element.querySelector('.button-container');
+      buttonContainer.removeChild(removeButton);
+      buttonContainer.appendChild(newRemoveButton);
     } else {
       alert('Ocorreu um erro ao atualizar o item.');
     }
@@ -82,14 +87,6 @@ function addElement({ name, url }) {
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('button-container');
 
-  const removeButton = document.createElement('button');
-  removeButton.classList.add('remover');
-  removeButton.innerHTML = 'Remover';
-
-  removeButton.addEventListener('click', () => {
-    removeElement(listItem, name, url);
-  });
-
   const updateButton = document.createElement('button');
   updateButton.classList.add('atualizar');
   updateButton.innerHTML = 'Atualizar';
@@ -98,8 +95,18 @@ function addElement({ name, url }) {
     updateElement(listItem, name, url);
   });
 
-  buttonContainer.appendChild(removeButton);
+  const removeButton = document.createElement('button');
+  removeButton.classList.add('remover');
+  removeButton.innerHTML = 'Remover';
+
+  removeButton.addEventListener('click', () => {
+    removeElement(listItem, name, url);
+  });
+
+  
   buttonContainer.appendChild(updateButton);
+  buttonContainer.appendChild(removeButton);
+  
 
   listItem.appendChild(link);
   listItem.appendChild(buttonContainer);
