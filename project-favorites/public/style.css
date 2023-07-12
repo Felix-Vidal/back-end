@@ -30,7 +30,7 @@ form {
 
 input[type="text"] {
   padding: 10px;
-  width: 30em;
+  width: 32.5em;
   border: none;
   border-radius: 20px;
   background-color: rgb(70,130,180);
@@ -53,13 +53,19 @@ ul {
   margin-bottom: 80px; /* Adicionando margem inferior */
 }
 
-ul p {
+p {
   font-size: 20px;
   color: white;
   padding: 12px;
   text-align: center;
   background-color: rgb(70,130,180);
   border: #fefefe solid;
+  width: 26em;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-top: 10px;
+
+
 }
 
 input#salvar {
